@@ -1,0 +1,54 @@
+:root {
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Syne', var(--font-sans);
+
+  --bg-deep: #f4f4f5;
+  --bg-mid: #e4e4e7;
+  --accent: #3f3f46;
+  --accent-strong: #27272a;
+  --accent-glow: rgba(39, 39, 42, 0.12);
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-elevated: #fafafa;
+  --border: #d4d4d8;
+  --border-focus: #71717a;
+  --text: #3f3f46;
+  --text-muted: #71717a;
+  --text-heading: #18181b;
+  --success: #0d9488;
+  --warning: #b45309;
+  --danger: #b91c1c;
+
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--bg-deep);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+a {
+  color: var(--accent-strong);
+}
