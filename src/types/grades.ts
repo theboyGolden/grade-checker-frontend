@@ -4,16 +4,22 @@ export type GradeMetadata = {
   source_file: string
 }
 
-export type Scores = {
-  raw: { assignment: number; quiz: number; midsem: number }
-  weighted: { assignment: number; quiz: number; midsem: number }
+export type ComponentScores = {
+  assignment?: number
+  quiz?: number
+  midsem?: number
 }
+
+export type Scores = {
+  raw?: ComponentScores
+  weighted?: ComponentScores
+} & ComponentScores
 
 export type StudentGrades = {
   indexNumber: string
   name: string
-  scores: Scores
-  finalScore: number
+  scores?: Scores
+  finalScore?: number
 }
 
 export type ApiMetadataResponse = {

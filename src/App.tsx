@@ -11,6 +11,29 @@ import type { GradeMetadata, StudentGrades } from './types/grades'
 import './App.css'
 
 const INDEX_LEN = 10
+const COMPONENTS = [
+  { key: 'assignment', label: 'Assignment' },
+  { key: 'quiz', label: 'Quiz' },
+  { key: 'midsem', label: 'Mid-semester' },
+] as const
+
+function readScore(
+  result: StudentGrades,
+  key: (typeof COMPONENTS)[number]['key'],
+): number | undefined {
+  const scores = result.scores
+  if (!scores) return undefined
+  const nested = scores.raw?.[key]
+  if (typeof nested === 'number') return nested
+  const flat = scores[key]
+  if (typeof flat === 'number') return flat
+  return undefined
+}
+
+function formatScore(value: number | undefined): string {
+  if (typeof value !== 'number' || Number.isNaN(value)) return '—'
+  return Number.isInteger(value) ? String(value) : value.toFixed(1)
+}
 
 function formatIndexDisplay(digits: string): string {
   if (digits.length <= 4) return digits
@@ -105,13 +128,9 @@ export default function App() {
   )
 
   const rows = result
-    ? (['assignment', 'quiz', 'midsem'] as const).map((key) => ({
-        label:
-          key === 'midsem'
-            ? 'Mid-semester'
-            : key.charAt(0).toUpperCase() + key.slice(1),
-        raw: result.scores.raw[key],
-        weighted: result.scores.weighted[key],
+    ? COMPONENTS.map(({ key, label }) => ({
+        label,
+        score: readScore(result, key),
       }))
     : []
 
@@ -225,7 +244,7 @@ export default function App() {
                 <div className="score-pill">
                   <span className="score-pill-label">Final score</span>
                   <span className="score-pill-value">
-                    {result.finalScore.toFixed(1)}
+                    {formatScore(result.finalScore)}
                   </span>
                 </div>
               </div>
@@ -235,16 +254,14 @@ export default function App() {
                   <thead>
                     <tr>
                       <th>Component</th>
-                      <th>Raw</th>
-                      <th>Weighted</th>
+                      <th>Score</th>
                     </tr>
                   </thead>
                   <tbody>
                     {rows.map((row) => (
                       <tr key={row.label}>
                         <td>{row.label}</td>
-                        <td className="num">{row.raw}</td>
-                        <td className="num">{row.weighted}</td>
+                        <td className="num">{formatScore(row.score)}</td>
                       </tr>
                     ))}
                   </tbody>
