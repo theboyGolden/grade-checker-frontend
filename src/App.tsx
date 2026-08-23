@@ -126,7 +126,7 @@ export default function App() {
             />
             {metaLoaded && metadata ? 'Records loaded' : 'Connecting…'}
           </div>
-          <h1 className="title">Listening & Speaking Grade checker</h1>
+          <h1 className="title">Reading & Writing Grade checker</h1>
           <p className="subtitle">
             Enter your index number to view your scores and final result.
       
