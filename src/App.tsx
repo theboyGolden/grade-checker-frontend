@@ -277,7 +277,8 @@ export default function App() {
         </div>
 
         <p className="footer-note">
-        This grade portal shows your raw scores for each assessment component: 
+        Copyright 2026 MPT libraries. All rights reserved.
+        {/* This grade portal shows your raw scores for each assessment component: 
         Assignment (graded out of 20 marks), Quiz (graded out of 10 marks), 
         and Mid Semester Exam (graded out of 40 marks). Each component contributes 
         20% toward your final total score, calculated as (your raw score ÷ maximum 
@@ -285,7 +286,7 @@ export default function App() {
         × 20 = 14 weighted points. The three weighted scores are then added together to 
         give your final total out of 60. Bonus marks have been added. If you see a zero 
         for any component, it means you did not participate in that assessment or no score 
-        was recorded.
+        was recorded. */}
 
 
           {/* Having trouble? Confirm the API is running and that this app uses a dev
