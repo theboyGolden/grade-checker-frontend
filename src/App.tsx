@@ -35,6 +35,11 @@ function formatScore(value: number | undefined): string {
   return Number.isInteger(value) ? String(value) : value.toFixed(1)
 }
 
+function formatFinalScore(value: number | undefined): string {
+  if (typeof value !== 'number' || Number.isNaN(value)) return '—'
+  return String(Math.round(value))
+}
+
 function formatIndexDisplay(digits: string): string {
   if (digits.length <= 4) return digits
   return `${digits.slice(0, 4)} ${digits.slice(4)}`
@@ -244,7 +249,7 @@ export default function App() {
                 <div className="score-pill">
                   <span className="score-pill-label">Final score</span>
                   <span className="score-pill-value">
-                    {formatScore(result.finalScore)}
+                    {formatFinalScore(result.finalScore)}
                   </span>
                 </div>
               </div>
